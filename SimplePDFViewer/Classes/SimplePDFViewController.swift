@@ -11,6 +11,7 @@ import PDFKit
 
 public protocol SimplePDFViewOnDismissDelegate: AnyObject {
     func didDismiss(_ sender: SimplePDFViewController)
+    func didPageChange(pageNumber: Int)
 }
 
 public class SimplePDFViewController: UIViewController {
@@ -162,6 +163,7 @@ extension SimplePDFViewController: SimplePDFTopBarDelegate, SimplePDFBottomBarAc
     internal func onPageChange(_ sender: SimplePDFView) {
         self.currentPage = sender.currentPageNumber
         bottomBar.currentPage = sender.currentPageNumber
+        dismissalDelegate?.didPageChange(pageNumber: sender.currentPageNumber)
     }
     
 }

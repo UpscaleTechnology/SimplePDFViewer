@@ -63,6 +63,7 @@ class ViewController: UIViewController {
     
     @objc private func launchStandardPDFVC() {
         let pdfVC = SimplePDFViewController(urlString: ViewController.TEST_PDF_URL)
+        pdfVC.dismissalDelegate = self
         present(pdfVC, animated: true, completion: nil)
         // You can also use it within a navigation stack by calling
         // navigationController?.pushViewController(pdfVC, animated: true)
@@ -96,4 +97,7 @@ extension ViewController: SimplePDFViewOnDismissDelegate {
         print("Hello!")
     }
 
+    func didPageChange(pageNumber: Int) {
+        print("current page \(pageNumber)")
+    }
 }
